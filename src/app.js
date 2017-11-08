@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const { format } = require('date-fns');
 
 const RATP_SCHEDULES_URL = 'https://www.ratp.fr/horaires';
 const SELECTORS = {
@@ -72,8 +73,16 @@ const getSchedules = async (page) => {
   await setLineStop('Doc', page);
   await submitForm(page);
 
+  const currentTime = format(new Date(), 'HH:MM');
   const schedules = await getSchedules(page);
-  console.log('schedules', schedules);
+
+  console.log(`
+    It's ${currentTime},
+    And the next buses are in:
+
+    - ${schedules[0]}
+    - ${schedules[1]}
+  `);
 
   await browser.close();
 })();

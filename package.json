@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "date-fns": "^1.29.0",
     "puppeteer": "^0.12.0"
   }
 }
